@@ -1,6 +1,5 @@
 class MarkT:  # маркерует поля вокруг подбитого корабля символом Т
-    def __init__(self, seqIn, seqVis, subseq):
-        self.seqIn = seqIn
+    def __init__(self, seqVis, subseq):
         self.seqVis = seqVis
         self.subseq = subseq
     @property
@@ -8,97 +7,97 @@ class MarkT:  # маркерует поля вокруг подбитого ко
         for i in self.subseq:
             if i % 10 != 0 and i % 10 != 9:
                 try:
-                    if self.seqIn[i + 1] != 'S':
+                    if self.seqVis[i + 1] != 'X':
                         self.seqVis[i + 1] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i + 9] != 'S':
+                    if self.seqVis[i + 9] != 'X':
                         self.seqVis[i + 9] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i + 10] != 'S':
+                    if self.seqVis[i + 10] != 'X':
                         self.seqVis[i + 10] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i + 11] != 'S':
+                    if self.seqVis[i + 11] != 'X':
                         self.seqVis[i + 11] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i - 1] != 'S':
+                    if self.seqVis[i - 1] != 'X':
                         self.seqVis[i - 1] = 'T'
                 except IndexError:
                     pass
                 if i // 10 != 0:
                     try:
-                        if self.seqIn[i - 9] != 'S':
+                        if self.seqVis[i - 9] != 'X':
                             self.seqVis[i - 9] = 'T'
                     except IndexError:
                         pass
                     try:
-                        if self.seqIn[i - 10] != 'S':
+                        if self.seqVis[i - 10] != 'X':
                             self.seqVis[i - 10] = 'T'
                     except IndexError:
                         pass
                     try:
-                        if self.seqIn[i - 11] != 'S':
+                        if self.seqVis[i - 11] != 'X':
                             self.seqVis[i - 11] = 'T'
                     except IndexError:
                         pass
             elif i % 10 == 0:
                 try:
-                    if self.seqIn[i + 1] != 'S':
+                    if self.seqVis[i + 1] != 'X':
                         self.seqVis[i + 1] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i + 10] != 'S':
+                    if self.seqVis[i + 10] != 'X':
                         self.seqVis[i + 10] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i + 11] != 'S':
+                    if self.seqVis[i + 11] != 'X':
                         self.seqVis[i + 11] = 'T'
                 except IndexError:
                     pass
                 if i // 10 != 0:
                     try:
-                        if self.seqIn[i - 9] != 'S':
+                        if self.seqVis[i - 9] != 'X':
                             self.seqVis[i - 9] = 'T'
                     except IndexError:
                         pass
                     try:
-                        if self.seqIn[i - 10] != 'S':
+                        if self.seqVis[i - 10] != 'X':
                             self.seqVis[i - 10] = 'T'
                     except IndexError:
                         pass
             elif i % 10 == 9:
                 try:
-                    if self.seqIn[i - 1] != 'S':
+                    if self.seqVis[i - 1] != 'X':
                         self.seqVis[i - 1] = 'T'
                 except IndexError:
                     pass
                 if i // 10 != 0:
                     try:
-                        if self.seqIn[i - 10] != 'S':
+                        if self.seqVis[i - 10] != 'X':
                             self.seqVis[i - 10] = 'T'
                     except IndexError:
                         pass
                     try:
-                        if self.seqIn[i - 11] != 'S':
+                        if self.seqVis[i - 11] != 'X':
                             self.seqVis[i - 11] = 'T'
                     except IndexError:
                         pass
                 try:
-                    if self.seqIn[i + 9] != 'S':
+                    if self.seqVis[i + 9] != 'X':
                         self.seqVis[i + 9] = 'T'
                 except IndexError:
                     pass
                 try:
-                    if self.seqIn[i + 10] != 'S':
+                    if self.seqVis[i + 10] != 'X':
                         self.seqVis[i + 10] = 'T'
                 except IndexError:
                     pass
