@@ -5,79 +5,32 @@ class RemoveSq1:   # удаляет числа из множества дост�
     @property
     def remover1(self):
         if self.place1 % 10 != 0 and self.place1 % 10 != 9:
-            try:
-                self.seq.remove(self.place1 + 1)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 9)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 10)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 11)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 1)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 9)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 10)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 11)
-            except KeyError:
-                pass
+            self.exception(1)
+            self.exception(9)
+            self.exception(10)
+            self.exception(11)
+            self.exception(-1)
+            self.exception(-9)
+            self.exception(-10)
+            self.exception(-11)
         elif self.place1 % 10 == 0:
-            try:
-                self.seq.remove(self.place1 + 1)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 10)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 11)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 9)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 10)
-            except KeyError:
-                pass
+            self.exception(1)
+            self.exception(10)
+            self.exception(11)
+            self.exception(-9)
+            self.exception(-10)
         elif self.place1 % 10 == 9:
-            try:
-                self.seq.remove(self.place1 - 1)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 10)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 - 11)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 9)
-            except KeyError:
-                pass
-            try:
-                self.seq.remove(self.place1 + 10)
-            except KeyError:
-                pass
+            self.exception(-1)
+            self.exception(-10)
+            self.exception(-11)
+            self.exception(9)
+            self.exception(10)
 
+        return self.seq
+
+    def exception(self, n):
+        try:
+            self.seq.remove(self.place1 + n)
+        except KeyError:
+            pass
         return self.seq
