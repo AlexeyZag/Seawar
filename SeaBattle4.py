@@ -5,6 +5,7 @@ from markT import MarkT
 from remove_around import RemoveSq1
 from desk import Desk
 from place_ship import Ship
+from exception import IndexException
 class Start:
     def __init__(self):
         global n, countA
@@ -60,29 +61,25 @@ class Game:  # класс, который включает в себя объя�
     def input_numP(self):  # ввод игрока
         global n
         coordinate = input('введите номер строки и номер столбца без пробелов: ')
-        try:
-            coordinate = int(coordinate)  # координата должна соответствовать числу из дозволенного списка
-        except ValueError:
-            print('Вы вводите символы, а не числа')
-            self.input_numP()  # снова вызываем ввод хода, если игрок ввел не числа
+        coor = IndexException(coordinate, self.allow_list_move_on_AI_desk)
+        if coor.check_coor() == 1:
+            print('Вы ввели неправильное значение ')
+            return self.input_numP()  # снова вызываем ввод хода, если игрок ввел не числа
         else:
-            if coordinate not in self.allow_list_move_on_AI_desk:
-                print('Выберите другие координаты')
-                self.input_numP()
-            else:
-                if self.Q1[coordinate] == " ":  # если на невидимой доске наш выстрел попадает на пустое поле, то печатаем Т на видимой
-                    self.Q[coordinate] = 'T'
-                    n += 1
-                elif self.Q1[coordinate] == 'S':  # если на невидимой доске наш выстрел попадает на поле с кораблем, то печатаем Х на видимой
-                    self.Q[coordinate] = 'X'
-                    self.move_list_Pl.add(coordinate)  #когда подбиваем корабль, то потом добавляем его в список
-                    removeA = RemoveFromShiplist(self.Q, self.allow_list_move_on_AI_desk, self.move_list_Pl, self.shipListAI)
-                    removeA.mark_and_remove()  # убираем корабль ИИ из списка доступных, маркируем вокруг него Т
-                #paint(Q, L, L1, Q2)
-        try:
+            coordinate = int(coordinate)
+            if self.Q1[coordinate] == " ":  # если на невидимой доске наш выстрел попадает на пустое поле, то печатаем Т на видимой
+                self.Q[coordinate] = 'T'
+                n += 1
+            elif self.Q1[coordinate] == 'S':  # если на невидимой доске наш выстрел попадает на поле с кораблем, то печатаем Х на видимой
+                self.Q[coordinate] = 'X'
+                self.move_list_Pl.add(coordinate)  #когда подбиваем корабль, то потом добавляем его в список
+                removeA = RemoveFromShiplist(self.Q, self.allow_list_move_on_AI_desk, self.move_list_Pl, self.shipListAI)
+                removeA.mark_and_remove()  # убираем корабль ИИ из списка доступных, маркируем вокруг него Т
+            #paint(Q, L, L1, Q2)
+            try:
                 self.allow_list_move_on_AI_desk.remove(coordinate)  # удаляем координату хода из доски ИИ из списка дозволенных ходов
-        except KeyError:
-            pass
+            except KeyError:
+                pass
         return n, self.allow_list_move_on_AI_desk, self.move_list_Pl, self.Q1, self.Q
 
     def input_shoot(self):  # ввод ИИ
